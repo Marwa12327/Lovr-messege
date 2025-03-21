@@ -1,0 +1,19 @@
+import cv2
+import numpy as np
+from moviepy.editor import VideoFileClip, concatenate_videoclips, vfx
+
+# تحميل مقطعي الفيديو
+clip1 = VideoFileClip("video1.mp4")
+clip2 = VideoFileClip("video2.mp4")
+
+# تطبيق تأثير التلاشي التدريجي بين الفيديوهات
+transition_duration = 1  # ثانية واحدة انتقال
+clip2 = clip2.set_start(clip1.duration - transition_duration)
+clip1 = clip1.crossfadeout(transition_duration)
+clip2 = clip2.crossfadein(transition_duration)
+
+# دمج المقطعين مع التأثير
+final_video = concatenate_videoclips([clip1, clip2])
+
+# حفظ الفيديو النهائي
+final_video.write_videofile("output.mp4", fps=30, codec="libx264")
