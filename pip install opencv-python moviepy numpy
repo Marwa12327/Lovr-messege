@@ -6,8 +6,7 @@ from moviepy.editor import VideoFileClip, concatenate_videoclips, vfx
 clip1 = VideoFileClip("video1.mp4")
 clip2 = VideoFileClip("video2.mp4")
 
-# تطبيق تأثير التلاشي التدريجي بين الفيديوهات
-transition_duration = 1  # ثانية واحدة انتقال
+# تطبيق تأثير التلاشي التدريجي بين الفيديوها
 clip2 = clip2.set_start(clip1.duration - transition_duration)
 clip1 = clip1.crossfadeout(transition_duration)
 clip2 = clip2.crossfadein(transition_duration)
